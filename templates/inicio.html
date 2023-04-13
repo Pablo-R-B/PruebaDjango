@@ -1,0 +1,51 @@
+{#{% load static %}#}
+{% include "header.html" %}
+
+{% block content %}
+
+<body>
+<p>Nuestro restaurante</p>
+
+{# Keymap de Eclipse: ctrl+may+f para formatear etiquetas #}
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link" href="/safarest">Inicio</a>
+                <a class="nav-link" href="/safarest/restaurantes">Restaurantes</a>
+                <a class="nav-link" href="/safarest/buscar?restaurante=Luigi">Buscar</a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+{#<p>Hola, {{ name }}</p>#}
+
+{% if num == 0 %}
+    <h1>Luis</h1>
+{% else %}
+    <h1>Espe</h1>
+
+{% endif %}
+
+<tr>
+    {% for lenguaje in listlenguajes %}
+        <td> {{ lenguaje }}</td>
+
+    {% endfor %}
+</tr>
+
+
+<form id="formulario_busqueda" action="safaRest/buscar" method="GET">
+    <div class="mb-3">
+        <label for="busqueda" class="form-label">Busca tu dirección</label>
+        <input type="search" id="busqueda" name="busqueda" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+</body>
+{% endblock %}

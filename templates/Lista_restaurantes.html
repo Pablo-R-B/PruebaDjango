@@ -1,0 +1,39 @@
+{% include "header.html" %}
+
+{% block content %}
+
+
+<body>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Nombre</th>
+      <th scope="col">Capacidad</th>
+      <th scope="col">Tipo comida</th>
+      <th scope="col">Fecha fundación</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for rest in restaurantes %}
+  <tr>
+      <th>{{ rest.nombre }}</th>
+      <th>{{ rest.capacidad}}</th>
+      <th>{{ rest.tipo }}</th>
+      <th>{{ rest.fecha_fundacion}}</th>
+
+  </tr>
+  </tbody>
+    {% endfor %}
+</table>
+
+    {% for rest in restaurantes %}
+
+        <p>{{ rest.nombre }}</p>
+
+    {% endfor %}
+
+
+
+</body>
+{% endblock %}
