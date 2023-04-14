@@ -37,3 +37,16 @@ listlenguajes=["python", "java", "php", "C#", "javascript"]
 def lista_lenguajes(request):
     context={'listlenguajes': listlenguajes}
     return render(request, "inicio.html", context)
+
+def crear_restaurante (request):
+    if request.method=="GET":
+        return render(request, 'crear_restaurante.html', {'tipos_restaurante':TipoRestaurante.values})
+    else:
+        nuevo_restaurante=Restaurante()
+        nuevo_restaurante.nombre=request.POST.get("nombre")
+        nuevo_restaurante.ciudad = request.POST.get("ciudad")
+        nuevo_restaurante.capacidad = int(request.POST.get("capacidad")) #Recibe el número como string, pero en la BD es un entero
+        nuevo_restaurante.fecha_fundacion = request.POST.get("fecha") #Usar el mismo nombre en POST.get() que el id del formulario en el html
+        nuevo_restaurante.tipo =TipoRestaurante.values[TipoRestaurante.value.index(request.POST.get("tipo_restaurante"))]
+        Restaurante.save(nuevo_restaurante)
+        return render(request, "inicio.html")

@@ -1,14 +1,37 @@
 {% include "header.html" %}
 <body>
-<form action="safaRest/crear_restaurante" method="post">
-<div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Email address</label>
-  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+<form action="/safaRest/restaurantes/crear" method="post">
+
+        {% csrf_token %} #Poner en los formularios
+    <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input class="form-control" id="nombre" name="nombre" type="text" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label for="ciudad" class="form-label">Capacidad</label>
+        <input class="form-control" id="capacidad" name="capacidad" type="number" class="form-control">
+    </div>
+     <div class="mb-3">
+        <label for="ciudad" class="form-label">Ciudad</label>
+        <input class="form-control" id="ciudad" name="ciudad" type="text" class="form-control">
+    </div>
+     <div class="mb-3">
+        <label for="fecha" class="form-label">Fecha</label>
+        <input class="form-control" id="fecha" name="fecha" type="date" class="form-control">
+    </div>
+     <div class="mb-3">
+        <label for="tipo_restaurante" class="form-label">Tipo restaurante</label>
+        <select id="tipo_restaurante" name="tipo_restaurante">
+            {% for tipo in tipos_restaurantes %}
+                <option value="{{ tipo }}">{{ tipo }}</option> #tipo.mostrar_tipo
+            {% endfor %}
+
+        </select>
+    </div>
+<div>
+    <input type="=submit" value="Guardar">
 </div>
-<div class="mb-3">
-  <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-</div>
-    </form>
+</form>
 </body>
 </html>

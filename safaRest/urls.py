@@ -13,6 +13,7 @@ urlpatterns = [
     path('decision/', views.decison, name='decision'),
     path('lista_lenguajes/', views.lista_lenguajes, name="lista_lenguajes"),
     path('buscar/', buscar_restaurante),
+    path('restaurantes/crear', crear_restaurante)
 
 
 
