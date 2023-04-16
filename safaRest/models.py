@@ -49,15 +49,25 @@ class UsuarioManager(BaseUserManager):
         extra_fields.setdefault('is_superuser', True)
         return self.create_user(email, password, **extra_fields)
 
+    
+  class Roles(models.TextChoices):
+    ADMIN = "Admin"
+    PROPIETARIO_RESTAURANTE = "Propietario"
+    CLIENTE = "Cliente"
+
+    def mostrar(self):
+        return self
+
 class Usuario(AbstractBaseUser, PermissionsMixin): #AbstractBaseUser sustituye al usuario por defecto creado en el admin
                                                     #PermissionsMixin le da permisos al usuario
     email=models.EmailField(unique=True)
     username=models.CharField(unique=True, max_length=255, blank=False)
     password = models.CharField(max_length=255, blank=False)
+    rol = models.CharField(max_length=60, choices=Roles.choices,default=Roles.CLIENTE)
     is_active = models.BooleanField(default=False)
     is_staff=models.BooleanField(default=False)
 
-    USER_NAME='username'
+    USERNAME_FIELD='username'
     REQUIRED_FIELDS = ['username, email, password']
 
     objects=UsuarioManager()
